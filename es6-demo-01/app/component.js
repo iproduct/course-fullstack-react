@@ -1,11 +1,11 @@
-// export function myComponent() {
-//     var element = document.createElement('h1');
+export function myComponent() {
+    var element = document.createElement('h1');
 
-//     element.className = 'btn btn-primary';
-//     element.innerHTML = 'Hello ECMAScript 6 World!';
+    element.className = 'btn btn-primary';
+    element.innerHTML = 'Hello ECMAScript 6 World!';
 
-//     return element;
-// };
+    return element;
+};
 
 export class MyComponent {
     constructor(title) {

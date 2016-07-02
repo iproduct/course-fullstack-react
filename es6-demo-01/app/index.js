@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {MyComponent} from './component';
 
 let instance = new MyComponent('Hello ECMAScript 6 World!');
