@@ -1,0 +1,2 @@
+webpackJsonp([0,3],{0:function(e,n,o){o(1);var c=o(29);document.body.appendChild(c()),console.log("Webpack demo 01 loaded successfully.")},29:function(e,n){e.exports=function(){var e=document.createElement("h1");return e.className="btn btn-primary",e.innerHTML="Hello ECMAScript 6 World!",e}}});
+//# sourceMappingURL=app.4b624f98e48e1ef79a67.js.map
