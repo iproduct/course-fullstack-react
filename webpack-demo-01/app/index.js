@@ -1,6 +1,5 @@
-import {MyComponent} from './component';
+import { myComponent } from './component';
 
-let instance = new MyComponent('Hello ECMAScript 6 World!');
-document.body.appendChild(instance.getElement());
+document.body.appendChild(myComponent());
 
 console.log('Webpack demo 01 loaded successfully.');

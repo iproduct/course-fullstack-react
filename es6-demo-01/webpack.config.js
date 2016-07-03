@@ -93,7 +93,7 @@ switch (process.env.npm_lifecycle_event) {
             ),
             parts.extractBundle({
                 name: 'vendor',
-                entries: Object.keys(pkg.dependencies)
+                entries: ['react', 'react-dom', 'jquery']
             }),
             parts.minify(),
             parts.extractCSS(PATHS.style),
