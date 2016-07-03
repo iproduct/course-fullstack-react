@@ -4,7 +4,7 @@ import { AbstractService } from './abstract.service';
 export class WikiService extends AbstractService {
 
     constructor() {
-        super("http://en.wikipedia.org/w/api.php?callback=?");
+        super("https://en.wikipedia.org/w/api.php?callback=?");
     }
 
     search(term) {
