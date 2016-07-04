@@ -19,6 +19,12 @@ const PATHS = {
     build: path.join(__dirname, 'build')
 };
 
+const OPTIONS = merge(PATHS, {
+    // Customize host/port here if needed
+    host: process.env.HOST,
+    port: process.env.PORT
+});
+
 const common = {
     // Entry accepts a path or an object of entries.
     // We'll be using the latter form given it's
@@ -107,11 +113,7 @@ switch (process.env.npm_lifecycle_event) {
             {
                 devtool: 'source-map'
             },
-            parts.devServer({
-                // Customize host/port here if needed
-                host: process.env.HOST,
-                port: process.env.PORT
-            })
+            parts.devServer(OPTIONS)
         );
 }
 
