@@ -1,6 +1,6 @@
 {
-  "name": "es6-demo-01",
-  "short_name": "es6-demo-01",
+  "name": "webpack-demo-01",
+  "short_name": "webpack-demo-01",
   "display": "standalone",
   "orientation": "portrait",
   "icons": [
