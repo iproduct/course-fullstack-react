@@ -8,11 +8,9 @@ export function myComponent() {
 };
 
 export class MyComponent {
-
     constructor(title) {
         this.title = title;
     }
-    
     getElement() {
         var element = document.createElement('h1');
 
