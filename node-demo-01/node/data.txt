@@ -14,5 +14,5 @@ readStream   // reads current file
   .pipe(gzip)  // compresses
   .pipe(writeStream)  // writes to out file
   .on('finish', function () {  // all done
-    console.log('done');
+    console.log('Encription and compression done.');
   });

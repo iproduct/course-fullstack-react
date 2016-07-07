@@ -5,7 +5,6 @@ var rl = readline.createInterface({
 });
 rl.question("What do you think of node.js? ",
     function (answer) {
-        // TODO: Log the answer in a database
-        console.log("Thank you for your valuable feedback:", answer);
+        console.log("Thank you for your feedback:", answer);
         rl.close();
     });
