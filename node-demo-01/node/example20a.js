@@ -4,7 +4,7 @@
  */
 var http = require('http');
 
-http.get('http://localhost:8000/page1.html', (response) => {
+http.get('http://localhost:8000/page2.html', (response) => {
     console.log(`Got response with status code: ${response.statusCode}`);
     
     // Check status of HTTP response

@@ -7,7 +7,7 @@ var http = require('http');
 var options = {
     host: 'localhost',
     port: '8000',
-    path: '/page1.html'
+    path: '/page2.html'
 };
 
 // Callback function is used to deal with response
