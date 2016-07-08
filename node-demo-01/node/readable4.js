@@ -7,9 +7,9 @@ class MyReadable extends Readable {
     }
 
     _read() {
-        if (this.char >= 'z'.charCodeAt(0)) rs.push(null);
+        if (this.char >= 'z'.charCodeAt(0)) this.push(null);
         setTimeout(() => {
-            rs.push(String.fromCharCode( ++this.char));
+            this.push(String.fromCharCode( ++this.char));
         }, 100);
     }
 

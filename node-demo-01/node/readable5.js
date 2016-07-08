@@ -1,6 +1,7 @@
 const countries = require('./countries');
 const JsonToString = require('./transform1');
 const AddNewLine = require('./transform2');
+const MyWritable = require('./writable1').MyWritable;
 const Readable = require('stream').Readable;
 
 // console.log(countries);
@@ -24,9 +25,10 @@ class CountriesReadable extends Readable {
 let rs = new CountriesReadable();
 
 rs
-.pipe(new JsonToString())
-.pipe(new AddNewLine())
-.pipe(process.stdout);
+.pipe(new MyWritable());
+// .pipe(new JsonToString())
+// .pipe(new AddNewLine())
+// .pipe(process.stdout);
 
 rs.on('error', process.exit);
 

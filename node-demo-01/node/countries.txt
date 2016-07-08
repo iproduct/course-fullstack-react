@@ -1,4 +1,4 @@
-{"name": "Uruguay", "code": "UY"} 
+{"name": "Uruguay", "code": "UY"}
 {"name": "Uzbekistan", "code": "UZ"}
 {"name": "Vanuatu", "code": "VU"}
 {"name": "Venezuela", "code": "VE"}

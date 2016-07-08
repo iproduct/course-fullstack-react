@@ -7,8 +7,8 @@ class MyReadable extends Readable {
     }
 
     _read() {
-        rs.push(String.fromCharCode(this.char++));
-        if (this.char > 'z'.charCodeAt(0)) rs.push(null);
+        this.push(String.fromCharCode(this.char++));
+        if (this.char > 'z'.charCodeAt(0)) this.push(null);
     }
 
 }

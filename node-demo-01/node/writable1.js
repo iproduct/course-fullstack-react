@@ -16,3 +16,5 @@ let readStream = fs.createReadStream('countries.txt');
 readStream
   .pipe(split(JSON.parse))
   .pipe(new MyWritable());
+
+  exports.MyWritable = MyWritable;

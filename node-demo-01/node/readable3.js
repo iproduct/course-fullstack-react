@@ -5,8 +5,8 @@ let rs = new Readable(
     function (char) {
         return {
             read(size) {
-                rs.push(String.fromCharCode(char++));
-                if (char > 'z'.charCodeAt(0)) rs.push(null);
+                this.push(String.fromCharCode(char++));
+                if (char > 'z'.charCodeAt(0)) this.push(null);
             }
         }
     } (97)

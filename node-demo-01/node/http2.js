@@ -61,7 +61,7 @@ const server = http.createServer((request, response) => {
             // response.setHeader('Content-Type', 'application/json');
             response.writeHead(201, {
                 'content-type': 'application/json',
-                'location': `http://localhost:${PORT}/page1.html`
+                'location': `http://localhost:${PORT}/echo`
             });
             var responseBody = {
                 headers: headers,
