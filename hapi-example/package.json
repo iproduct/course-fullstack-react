@@ -1,0 +1,18 @@
+{
+  "name": "hapi-example",
+  "version": "1.0.0",
+  "description": "basic hapi example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "good": "^7.0.1",
+    "good-console": "^6.1.2",
+    "good-squeeze": "^4.0.0",
+    "hapi": "^13.5.0",
+    "joi": "^9.0.0"
+  }
+}
