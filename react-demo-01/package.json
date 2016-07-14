@@ -1,0 +1,27 @@
+{
+  "name": "react-demo-01",
+  "version": "1.0.0",
+  "description": "React intro",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iproduct/course-fullstack-react.git"
+  },
+  "keywords": [
+    "react",
+    "js",
+    "intro",
+    "demo",
+    "webpack",
+    "simple"
+  ],
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/iproduct/course-fullstack-react/issues"
+  },
+  "homepage": "https://github.com/iproduct/course-fullstack-react#readme"
+}
