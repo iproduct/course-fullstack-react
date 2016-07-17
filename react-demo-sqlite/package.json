@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:lint": "eslint . --ext .js --ext .jsx --cache || true",
     "start": "webpack-dev-server --inline --hot",
-    "services": "node ./server.js"
+    "services": "node ./comments-api/server.js"
   },
   "repository": {
     "type": "git",
@@ -50,10 +50,12 @@
     "good-console": "^6.1.2",
     "good-squeeze": "^4.0.0",
     "hapi": "^13.5.0",
+    "hoek": "^4.0.1",
     "jquery": "^3.1.0",
     "path": "^0.12.7",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "remarkable": "^1.6.2"
+    "remarkable": "^1.6.2",
+    "sqlite3": "^3.1.4"
   }
 }

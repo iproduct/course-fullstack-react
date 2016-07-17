@@ -1,1 +1,1 @@
-import './comments-demo-4';
+import './comments-demo';
