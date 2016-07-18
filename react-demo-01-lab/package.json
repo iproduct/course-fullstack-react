@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --inline --hot",
-    "build:prod": "webpack --config ./webpack-prod.conf.js -p"
+    "build:prod": "webpack --config ./webpack-prod.config.js -p"
   },
   "repository": {
     "type": "git",
