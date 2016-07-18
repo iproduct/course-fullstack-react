@@ -20,18 +20,18 @@ module.exports = [{
   method: 'GET',
   path: '/api/comments',
   handler: Comments.findAll
-},
-  {
-    method: 'GET',
-    path: '/api/comments/{commentId}',
-    handler: Comments.find,
-    config: {
-      validate: {
-        params: {
-          commentId: Joi.number().integer().min(1).required()
-        }
-      }
-    }
+// },
+//   {
+//     method: 'GET',
+//     path: '/api/comments/{commentId}',
+//     handler: Comments.find,
+//     config: {
+//       validate: {
+//         params: {
+//           commentId: Joi.number().integer().min(1).required()
+//         }
+//       }
+//     }
   },
   {
     method: 'POST',
@@ -40,22 +40,22 @@ module.exports = [{
     config: {
       validate: {
         payload: Joi.object({
-          id: Joi.number().integer().min(1).optional(),
+          id: Joi.string().min(1).optional(),
           author: Joi.string().min(2).required(),
           text: Joi.string().required(),
         })
       }
     }
-  },
-  {
-    method: 'DELETE',
-    path: '/api/comments/{commentId}',
-    handler: Comments.remove,
-    config: {
-      validate: {
-        params: {
-          commentId: Joi.number().integer().min(1).required()
-        }
-      }
-    }
+//   },
+//   {
+//     method: 'DELETE',
+//     path: '/api/comments/{commentId}',
+//     handler: Comments.remove,
+//     config: {
+//       validate: {
+//         params: {
+//           commentId: Joi.number().integer().min(1).required()
+//         }
+//       }
+//     }
   }];

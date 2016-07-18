@@ -4,7 +4,7 @@ let md = new Remarkable();
 
 let Comment = React.createClass({
   propTypes: {
-    commentId: React.PropTypes.number.isRequired,
+    commentId: React.PropTypes.string.isRequired,
     author: React.PropTypes.string,
     children: React.PropTypes.any,
     onCommentDelete: React.PropTypes.func

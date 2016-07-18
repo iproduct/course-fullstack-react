@@ -5,7 +5,7 @@ let CommentList = React.createClass({
   propTypes: {
     data: React.PropTypes.arrayOf(
       React.PropTypes.shape({
-        id: React.PropTypes.number,
+        id: React.PropTypes.string,
         author: React.PropTypes.string,
         text: React.PropTypes.string
     })),

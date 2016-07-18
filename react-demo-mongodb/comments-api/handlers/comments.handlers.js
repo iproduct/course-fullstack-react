@@ -14,57 +14,63 @@
 'use strict';
 
 const Boom = require('boom');
+const assert = require('assert');
 
 exports.findAll = function (request, reply) {
-    let sqlQuery = 'SELECT * FROM comments';
-    const qParams = [];
-
-    if (request.query.author) {
-        sqlQuery += ' WHERE author = ?';
-        qParams.push(request.query.author);
-    }
-
-    this.db.all(sqlQuery, qParams, (err, results) => {
-        if(err) throw err;
-        reply(results);
+    this.db.collection('comments', function (err, comments_collection) {
+        if (err) throw err;
+        comments_collection.find({}, {}).toArray(
+            (err, results) => {
+                if (err) throw err;
+                reply(results.map( (comment) => {
+                    comment.id = comment._id;
+                    delete(comment._id);
+                    console.log(comment);
+                    return comment;
+                }));
+            });
     });
 };
 
 exports.find = function (request, reply) {
-    this.db.get('SELECT * FROM comments WHERE id = ?', [request.params.commentId], 
-    (err, result) => {
-        if(err) throw err;
-        if (typeof result !== 'undefined') {
-            reply(result);
-        }
-        else {
-            reply(Boom.notFound(`Comment with Id=${request.params.commentId} not found.`));
-        }
-    });
+    this.db.get('SELECT * FROM comments WHERE id = ?', [request.params.commentId],
+        (err, result) => {
+            if (err) throw err;
+            if (typeof result !== 'undefined') {
+                reply(result);
+            }
+            else {
+                reply(Boom.notFound(`Comment with Id=${request.params.commentId} not found.`));
+            }
+        });
 };
 
 exports.create = function (request, reply) {
     let comment = request.payload;
-    this.db.run(`INSERT INTO comments (author, text) VALUES (?, ?);`, 
-        [comment.author, comment.text],
-        function(err) {
-            if(err) throw err;
-            comment.id = this.lastID;
-            const uri = request.raw.req.url + '/' + comment.id;
-            console.log('Created: ', uri);
-            reply(comment).created(uri);
-        });
-};
+    // Get the documents collection
+    let collection = this.db.collection('comments');
+    // Insert some documents
+    collection.insertOne(comment, function (err, result) {
+        if (err) throw err;
+        assert.equal(1, result.result.n);
+        assert.equal(1, result.ops.length);
+        console.log(`Inserted 1 document into the comment collection: ${JSON.stringify(result.ops)}`);
+        comment.id = result.ops[0]._id;
+        const uri = request.raw.req.url + '/' + comment.id;
+        console.log('Created: ', uri);
+        reply(comment).created(uri);
+    });
+}
 
 exports.remove = function (request, reply) {
-    this.db.run('DELETE FROM comments WHERE id = ?', [request.params.commentId], 
-        function(err) {
-            if(err) throw err;
-            if (this.changes  > 0) {
+    this.db.run('DELETE FROM comments WHERE id = ?', [request.params.commentId],
+        function (err) {
+            if (err) throw err;
+            if (this.changes > 0) {
                 console.log('Deleted: ', request.raw.req.url);
                 reply(`Comment ${request.params.commentId} was deleted successfully.`);
             } else {
                 reply(Boom.notFound(`Comment with Id=${request.params.commentId} not found.`));
             }
-    });
+        });
 };
