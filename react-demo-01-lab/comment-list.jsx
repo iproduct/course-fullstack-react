@@ -13,14 +13,17 @@ export default class CommentList extends React.Component {
     }
 
     render() {
+        let commentNodes = this.props.data.map(
+            (comment) => {
+                return (
+                    <Comment author={comment.author} key={comment.id}>
+                        {comment.text}
+                    </Comment>
+                );
+            })
         return (
             <div className="commentList">
-                <Comment author="John Smith">
-                    Do you like *React*?
-                </Comment>
-                <Comment author="Brian Smith">
-                    I'm considering it for next project.
-                </Comment>
+                {commentNodes}
             </div>
         );
     }
