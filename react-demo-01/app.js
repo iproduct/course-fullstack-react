@@ -1,1 +1,1 @@
-import './like-button-es6';
+import './comments-demo-4';

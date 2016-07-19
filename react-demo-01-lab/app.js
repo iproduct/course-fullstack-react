@@ -1,1 +1,1 @@
-import './hello-demo';
+import './comments-demo';

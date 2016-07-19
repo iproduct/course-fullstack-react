@@ -9,6 +9,11 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'jshint-loader'
+            },       
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader'
             }
         ],
          loaders: [
