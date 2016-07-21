@@ -20,18 +20,18 @@ module.exports = [{
   method: 'GET',
   path: '/api/comments',
   handler: Comments.findAll
-// },
-//   {
-//     method: 'GET',
-//     path: '/api/comments/{commentId}',
-//     handler: Comments.find,
-//     config: {
-//       validate: {
-//         params: {
-//           commentId: Joi.number().integer().min(1).required()
-//         }
-//       }
-//     }
+},
+  {
+    method: 'GET',
+    path: '/api/comments/{commentId}',
+    handler: Comments.find,
+    config: {
+      validate: {
+        params: {
+          commentId: Joi.string().length(24).required()
+        }
+      }
+    }
   },
   {
     method: 'POST',

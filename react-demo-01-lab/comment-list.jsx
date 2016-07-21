@@ -13,10 +13,12 @@ export default class CommentList extends React.Component {
     }
 
     render() {
-        let commentNodes = this.props.data.map(
+        let props = this.props;
+        var {data, ...myTitle} = props;
+        let commentNodes = data.map(
             (comment) => {
                 return (
-                    <Comment author={comment.author} key={comment.id}>
+                    <Comment author={comment.author} key={comment.id} {...myTitle}>
                         {comment.text}
                     </Comment>
                 );
@@ -35,5 +37,6 @@ CommentList.propTypes = {
             id: React.PropTypes.number,
             author: React.PropTypes.string,
             text: React.PropTypes.string
-        }))
+        })),
+    myTitle: React.PropTypes.string 
 }

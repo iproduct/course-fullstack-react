@@ -15,6 +15,7 @@
 
 const Boom = require('boom');
 const assert = require('assert');
+const mongodb = require('mongodb');
 
 exports.findAll = function (request, reply) {
     this.db.collection('comments', function (err, comments_collection) {
@@ -22,9 +23,9 @@ exports.findAll = function (request, reply) {
         comments_collection.find({}, {}).toArray(
             (err, results) => {
                 if (err) throw err;
-                reply(results.map( (comment) => {
+                reply(results.map((comment) => {
                     comment.id = comment._id;
-                    delete(comment._id);
+                    delete (comment._id);
                     console.log(comment);
                     return comment;
                 }));
@@ -33,16 +34,22 @@ exports.findAll = function (request, reply) {
 };
 
 exports.find = function (request, reply) {
-    this.db.get('SELECT * FROM comments WHERE id = ?', [request.params.commentId],
-        (err, result) => {
-            if (err) throw err;
-            if (typeof result !== 'undefined') {
-                reply(result);
-            }
-            else {
-                reply(Boom.notFound(`Comment with Id=${request.params.commentId} not found.`));
-            }
-        });
+    this.db.collection('comments', function (err, comments_collection) {
+        if (err) throw err;
+        comments_collection.findOne({ _id: new mongodb.ObjectID(request.params.commentId) },
+            (err, comment) => {
+                if (err) throw err;
+                if (comment === null) {
+                    reply(Boom.notFound(`Comment with Id=${request.params.commentId} not found.`));
+                } else {
+                    comment.id = comment._id;
+                    delete (comment._id);
+                    console.log(comment);
+                    reply(comment);
+                }
+
+            });
+    });
 };
 
 exports.create = function (request, reply) {

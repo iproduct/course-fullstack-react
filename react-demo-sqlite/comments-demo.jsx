@@ -54,7 +54,7 @@ let CommentBox = React.createClass({
       url: this.props.url + "/" + commentId,
       type: 'DELETE',
       success: function (data) {
-        this.setState({ data: data });
+        console.log( data );
       }.bind(this),
         error: function (xhr, status, err) {
           console.error(this.props.url, status, err.toString());

@@ -1,8 +1,8 @@
-import Hello from './hello';
+import {HelloDemoPure} from './hello-demo-pure';
 import React from 'react';
 import ReactDOM  from 'react-dom';
 
 ReactDOM.render(
-    <Hello name="Trayan" />,
+    <HelloDemoPure name="React User" />,
     document.getElementById("app")
 );

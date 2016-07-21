@@ -9,22 +9,23 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'jshint-loader'
-            },       
+            },
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'eslint-loader'
             }
         ],
-         loaders: [
+        loaders: [
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
                     cacheDirectory: true,
-                    presets: ['react', 'es2015']
-                }
+                    presets: ['react', 'es2015'],
+                    "plugins": ["transform-object-rest-spread"]
+                },
             }
         ]
     },
