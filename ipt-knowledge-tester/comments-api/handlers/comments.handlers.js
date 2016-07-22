@@ -18,7 +18,7 @@ const assert = require('assert');
 const mongodb = require('mongodb');
 
 exports.findAll = function (request, reply) {
-    this.db.collection('comments', function (err, comments_collection) {
+    this.db.collection('tests', function (err, comments_collection) {
         if (err) throw err;
         comments_collection.find({}, {}).toArray(
             (err, results) => {
@@ -34,7 +34,7 @@ exports.findAll = function (request, reply) {
 };
 
 exports.find = function (request, reply) {
-    this.db.collection('comments', function (err, comments_collection) {
+    this.db.collection('tests', function (err, comments_collection) {
         if (err) throw err;
         comments_collection.findOne({ _id: new mongodb.ObjectID(request.params.commentId) },
             (err, comment) => {
@@ -55,7 +55,7 @@ exports.find = function (request, reply) {
 exports.create = function (request, reply) {
     let comment = request.payload;
     // Get the documents collection
-    let collection = this.db.collection('comments');
+    let collection = this.db.collection('tests');
     // Insert some documents
     collection.insertOne(comment, function (err, result) {
         if (err) throw err;
@@ -70,7 +70,7 @@ exports.create = function (request, reply) {
 }
 
 exports.remove = function (request, reply) {
-    this.db.collection('comments', function (err, comments_collection) {
+    this.db.collection('tests', function (err, comments_collection) {
         if (err) throw err;
         comments_collection.deleteOne({ _id: new mongodb.ObjectID(request.params.commentId) },
             (err, result) => {

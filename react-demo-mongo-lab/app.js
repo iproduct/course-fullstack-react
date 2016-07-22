@@ -1,0 +1,1 @@
+import './comments-demo-es6';

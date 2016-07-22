@@ -7,17 +7,17 @@ import CommentForm from "./comment-form";
 import $ from 'jquery';
 
 /**
- * CommentBox demo - ES6 class
+ * CommentBox demo
  */
 
-class CommentBox extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { data: [] };
-        this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
-        // this.refreshComments = this.refreshComments.bind(this);
-    }
-
+let CommentBox = React.createClass({
+    propTypes: {
+        url: React.PropTypes.string.isRequired,
+        pollInterval: React.PropTypes.number.isRequired
+    },
+    getInitialState: function () {
+        return { data: [] };
+    },
     refreshComments() {
         $.ajax({
             method: 'GET',
@@ -29,8 +29,8 @@ class CommentBox extends React.Component {
         }).fail((xhr, status, err) => {
             console.error(this.props.url, status, err.toString());
         });
-    }
-    handleCommentSubmit(comment) {
+    },
+    handleCommentSubmit: function(comment) {
         $.ajax({
             method: 'POST',
             url: this.props.url,
@@ -42,31 +42,25 @@ class CommentBox extends React.Component {
         }).fail((xhr, status, err) => {
             console.error(this.props.url, status, err.toString());
         });
-    }
+    },
     componentDidMount() {
-        this.interval = setInterval(() => this.refreshComments(), this.props.pollInterval);
-    }
+        this.interval = setInterval( this.refreshComments, this.props.pollInterval);
+    },
     componentWillUnmount() {
         clearInterval(this.interval);
-    }
-    render() {
+    },
+    render: function () {
         return (
             <div className='commentBox'>
                 <h1>Comments Demo</h1>
-                <CommentList data={this.state.data} myTitle='Comment: ' />
+                <CommentList data={this.state.data}/>
                 <CommentForm onCommentsSubmit={this.handleCommentSubmit}/>
             </div>
         );
     }
-}
-
-CommentBox.propTypes = {
-    url: React.PropTypes.string.isRequired,
-    pollInterval: React.PropTypes.number.isRequired
-};
+});
 
 ReactDOM.render(
     <CommentBox url='/api/comments' pollInterval={2000} />,
     document.getElementById('app')
 );
-

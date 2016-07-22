@@ -1,9 +1,8 @@
 module.exports = {
-    entry: ["./app.js"],
+    entry: ["./app.js", "./global.js"],
     output: {
         filename: "bundle.js"
     },
-    watch: true,
     module: {
         preLoaders: [
             {
@@ -14,8 +13,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'eslint-loader',
-                plugins: ["transform-object-rest-spread"]
+                loader: 'eslint-loader'
             }
         ],
         loaders: [
@@ -25,11 +23,13 @@ module.exports = {
                 loader: 'babel-loader',
                 query: {
                     cacheDirectory: true,
-                    presets: ['react', 'es2015']
-                }
+                    presets: ['react', 'es2015'],
+                    "plugins": ["transform-object-rest-spread"]
+                },
             }
         ]
     },
+    watch: true,
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
@@ -59,5 +59,4 @@ module.exports = {
             }
         },
     },
-
 }

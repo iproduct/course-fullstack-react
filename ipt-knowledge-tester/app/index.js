@@ -1,0 +1,1 @@
+import './ipt-knowledge-tester';
