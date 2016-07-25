@@ -18,8 +18,8 @@ const Navigation = ({children}, context) => {
   }
 
   return (
-    <nav className="navbar navbar-default">
-      <div className="container-fluid">
+      <nav className="navbar navbar-default navbar-fixed-top">
+        <div className="container">
 
         <div className="navbar-header">
           <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -33,7 +33,8 @@ const Navigation = ({children}, context) => {
 
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul className="nav navbar-nav">
-            <li><NavLink to="/about">About</NavLink></li>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to={{ pathname: '/tests', query: {controls: true}}}>Tests</NavLink></li>
 
             <li className="dropdown">
               <NavLink to="/repos" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Repos <span className="caret"></span></NavLink>
@@ -55,18 +56,9 @@ const Navigation = ({children}, context) => {
             <button type="submit" className="btn btn-default">Go</button>
           </form>
           <ul className="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
-            <li className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
-              <ul className="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" className="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
+            <li><NavLink to="/about">About</NavLink></li>
           </ul>
+          
         </div>
       </div>
     </nav>

@@ -1,3 +1,5 @@
+body { padding-top: 70px; }
+
 .navbar-default .navbar-nav>li>a.active {
     background-color: #e5e5e5 ;
     color: #666;
@@ -15,3 +17,4 @@
 .navbar-brand {
     padding: 0;
 }
+

@@ -14,7 +14,7 @@
 'use strict';
 
 import React from 'react';
-import Navigation from './parts/navigation';
+import Navigation from './main/navigation';
 // import Home from './parts/home';
 
 class MainLayout extends React.Component {
@@ -24,12 +24,13 @@ class MainLayout extends React.Component {
 
   render() {
     return (<div>
-      <h1>IPT Knowledge Tester</h1>
-      
+     
       <Navigation />
 
-      {/* Here routed components go ... */}
-      {this.props.children}
+      <div className="container">
+        {/* Here routed components go ... */}
+        {this.props.children}
+      </div>
     </div>);
   }
 }
