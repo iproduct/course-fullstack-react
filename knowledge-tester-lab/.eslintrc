@@ -7,8 +7,7 @@
   "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "node": true,
-    "es6": true 
+    "node": true
   },
   // Enable custom plugin known as eslint-plugin-react
   "plugins": [
@@ -20,7 +19,6 @@
     // Give a warning if identifiers contain underscores
     "no-underscore-dangle": 1,
     //Not to report dangerouslySetInnerHTML()
-    "react/no-danger": 0,
-    "no-constant-condition": 0
+    "react/no-danger": 0
   }
 }

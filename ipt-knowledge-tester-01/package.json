@@ -8,7 +8,7 @@
     "test:lint": "eslint . --ext .js --ext .jsx --cache || true",
     "start": "webpack-dev-server --inline --hot",
     "build:prod": "webpack --config ./webpack-prod.config.js -p",
-    "services": "node ./test-api/server.js",
+    "services": "node ./comments-api/server.js",
     "mongo": "mongod --dbpath=c:/mongo-data --port 27017"
   },
   "repository": {

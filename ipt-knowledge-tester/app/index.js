@@ -1,1 +1,1 @@
-import './ipt-knowledge-tester';
+import './main-router';

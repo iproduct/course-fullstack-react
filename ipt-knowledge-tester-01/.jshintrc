@@ -1,7 +1,5 @@
 { 
-  "esversion": 6,
   "browser": true,
-  "node": true,
   "camelcase": false,
   "esnext": true,
   "indent": 2,
