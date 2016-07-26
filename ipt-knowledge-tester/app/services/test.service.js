@@ -9,7 +9,14 @@ class TestService {
     }
 
     getTests() {
-        return this.getJsonAsPromise(this.url);
+        return this.getJsonAsPromise(this.url)
+            .then((tests) => tests.map(
+                (test) => {
+                    if(!test.questions)
+                        test.questions = [];
+                    return test;
+                })
+            );
     }
 
     postTest(test) {

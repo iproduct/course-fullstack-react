@@ -1,5 +1,4 @@
 { 
-  "esversion": 6,
   "browser": true,
   "node": true,
   "camelcase": false,
