@@ -5,6 +5,7 @@ const Home = () => {
     <section id="home">
       <div className="jumbotron">
         <div className="container">
+          <img src="/app/assets/img/test.png" className="pull-left" />
           <h1>IPT Knowledge Tester</h1>
         </div>
       </div>

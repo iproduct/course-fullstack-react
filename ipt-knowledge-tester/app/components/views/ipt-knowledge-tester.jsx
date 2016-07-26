@@ -48,7 +48,8 @@ IPTKnowledgeTester.propTypes = {
 }
 
 IPTKnowledgeTester.childContextTypes = {
-  testService: React.PropTypes.object
+  testService: React.PropTypes.object,
+  userService: React.PropTypes.object
 };
 
 export default IPTKnowledgeTester;

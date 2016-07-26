@@ -1,5 +1,9 @@
 body { padding-top: 70px; }
 
+#home .jumbotron img {
+    padding-right: 50px;
+}
+
 .navbar-default .navbar-nav>li>a.active {
     background-color: #e5e5e5 ;
     color: #666;
@@ -18,7 +22,15 @@ body { padding-top: 70px; }
     padding: 0;
 }
 
-.test-controls button {
+.test-controls button, .question-controls button, .answer-controls button {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+.questions .well {
+    padding :10px;
+}
+
+.question-text p {
+    margin-bottom: 5px;
 }

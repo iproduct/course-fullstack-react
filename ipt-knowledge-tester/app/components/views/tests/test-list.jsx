@@ -39,7 +39,7 @@ class TestList extends React.Component {
       console.log(test);
       return (
         <Test test={test} key={test.id}
-          isControls={isControls} summary={true}
+          isControls={isControls} isDetails={false}
           onTestDelete={this.handleTestDeleted} >
         </Test>
       );

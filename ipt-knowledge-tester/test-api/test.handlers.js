@@ -41,7 +41,6 @@ exports.find = function (request, reply) {
                 } else {
                     test.id = test._id;
                     delete (test._id);
-                    console.log(test);
                     reply(test);
                 }
 
@@ -78,10 +77,11 @@ exports.edit = function (request, reply) {
     console.log('Editing test:', test);
     collection.updateOne({ _id: new mongodb.ObjectID(test._id) }, { "$set": test })
         .then((result) => {
+            test = replaceId(test);
             if (result.result.ok && result.modifiedCount === 1) {
-                reply(replaceId(test));
+                reply(test);
             } else {
-                reply(Boom.badRequest(`Invalid test data - edit NOT saved on the server: ${test}`));
+                reply(Boom.badRequest(`Data was NOT modified in database: ${JSON.stringify(test)}`));
             }
         }).catch((err) => {
             reply(Boom.badImplementation(`Server error: ${err}`));
