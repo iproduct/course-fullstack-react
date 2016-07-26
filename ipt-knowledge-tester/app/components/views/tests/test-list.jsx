@@ -7,13 +7,22 @@ class TestList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { tests: [] }
-    this.handleAddTest = this.handleAddTest.bind(this);
+    this.addTest = this.addTest.bind(this);
+    this.handleTestDeleted = this.handleTestDeleted.bind(this);
   }
 
 
-  handleAddTest() {
+  addTest() {
     const path = { pathname: '/test', query: { controls: true, edit: true } };
     this.context.router.push(path);
+  }
+
+  handleTestDeleted(deletedTestId) {
+    // remove deleted test
+    let newTests = this.state.tests.filter((test) => {
+      return (test.id !== deletedTestId);
+    });
+    this.setState({ tests: newTests });
   }
 
   componentDidMount() {
@@ -31,7 +40,7 @@ class TestList extends React.Component {
       return (
         <Test test={test} key={test.id}
           isControls={isControls} summary={true}
-          onTestDelete={this.props.onTestDelete} >
+          onTestDelete={this.handleTestDeleted} >
         </Test>
       );
     });
@@ -40,7 +49,7 @@ class TestList extends React.Component {
       <section className="tests">
         <h2>Tests Available</h2>
         { true ? (
-          <button type="button" className="btn btn-primary" onClick={this.handleAddTest}>Add New Test</button>
+          <button type="button" className="btn btn-primary" onClick={this.addTest}>Add New Test</button>
         ) : null
         }
         <div className="testList">

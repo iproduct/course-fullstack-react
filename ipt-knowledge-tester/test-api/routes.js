@@ -52,6 +52,27 @@ module.exports = [{
     }
   },
   {
+    method: 'PUT',
+    path: '/api/tests/{testId}',
+    handler: Tests.edit,
+    config: {
+      validate: {
+        params: {
+          testId: Joi.string().length(24).required()
+        },
+        payload: Joi.object({
+          id: Joi.string().allow(''),
+          title: Joi.string().min(2).required(),
+          difficulty: Joi.string().required(),
+          description: Joi.string().optional(),
+          author: Joi.string().optional(),
+          license: Joi.string().required(),
+          questions: Joi.array().optional(),
+        })
+      }
+    }
+  },
+  {
     method: 'DELETE',
     path: '/api/tests/{testId}',
     handler: Tests.remove,

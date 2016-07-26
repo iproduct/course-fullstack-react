@@ -54,11 +54,9 @@ exports.create = function (request, reply) {
     let collection = this.db.collection('tests');
     console.log('Inserting test:', test);
     collection.insertOne(test).then((result) => {
-        if (result.ops.length === 1) {
-            test.id = test._id;
-            delete (test._id);
-            const testUri = request.raw.req.url + '/' + test.id;
-            reply(test).created(testUri);
+        if (result.result.ok && result.insertedCount === 1) {
+            const testUri = request.raw.req.url + '/' + test._id;
+            reply(replaceId(test)).created(testUri);
         } else {
             reply(Boom.badRequest(`Invalid test data: ${test}`));
         }
@@ -68,24 +66,45 @@ exports.create = function (request, reply) {
         });
 };
 
+exports.edit = function (request, reply) {
+    let test = request.payload;
+    if (test.id !== request.params.testId) {
+        reply(Boom.badRequest(`Invalid test data - id in url doesn't match: ${test}`));
+        return;
+    }
+    test._id = new mongodb.ObjectID(test.id);
+    delete (test.id);
+    let collection = this.db.collection('tests');
+    console.log('Editing test:', test);
+    collection.updateOne({ _id: new mongodb.ObjectID(test._id) }, { "$set": test })
+        .then((result) => {
+            if (result.result.ok && result.modifiedCount === 1) {
+                reply(replaceId(test));
+            } else {
+                reply(Boom.badRequest(`Invalid test data - edit NOT saved on the server: ${test}`));
+            }
+        }).catch((err) => {
+            reply(Boom.badImplementation(`Server error: ${err}`));
+        });
+};
+
 exports.remove = function (request, reply) {
-    this.db.collection('tests', function (err, tests_collection) {
-        if (err) throw err;
-        tests_collection.findOneAndDelete({ _id: new mongodb.ObjectID(request.params.testId) },
-            (err, result) => {
-                if (err) throw err;
-                if (result.ok) {
-                    console.log('Deleted: ', request.raw.req.url);
-                    reply(replaceId(result.value));
-                } else {
-                    reply(Boom.notFound(`Test with Id=${request.params.testId} not found.`));
-                }
-            });
-    });
+    let collection = this.db.collection('tests');
+    collection.findOneAndDelete({ _id: new mongodb.ObjectID(request.params.testId) })
+        .then((result) => {
+            if (result.ok) {
+                console.log('Deleted: ', request.raw.req.url);
+                reply(replaceId(result.value));
+            } else {
+                reply(Boom.notFound(`Test with Id=${request.params.testId} not found.`));
+            }
+        }).catch((err) => {
+            reply(Boom.notFound(`Test with Id=${request.params.testId} not found.`));
+        });
 };
 
 function replaceId(test) {
-     test.id = test._id;
-     delete (test._id);
-     return test;
+    test.id = test._id;
+    delete (test._id);
+    return test;
 }
