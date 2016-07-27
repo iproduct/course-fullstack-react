@@ -1,7 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
 import deepEqual from 'deep-equal';
-import { getMaxId, findById, removeById, setById } from '../../../helpers/collection-helpers';
 import Modal from '../../common/modal';
 
 
@@ -127,7 +126,7 @@ class User extends React.Component {
       });
     }
   }
-  
+
 
   // Render component
   render() {

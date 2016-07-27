@@ -9,7 +9,8 @@ const PATHS = {
     images: (__dirname, 'app/assets/img'),
     style: [
         path.join(__dirname, 'node_modules/bootstrap/dist/css/', 'bootstrap.min.css'),
-        path.join(__dirname, 'app/assets/css/', 'main.css')
+        path.join(__dirname, 'app/assets/css/', 'main.css'),
+        path.join(__dirname, 'app/assets/css/', 'animation.css')
     ],
 
     build: path.join(__dirname, 'build')

@@ -1,5 +1,6 @@
 import React from 'react';
 import Test from './test';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // import { data } from '../../../fake-data/tests-data';
 
 class TestList extends React.Component {
@@ -47,13 +48,18 @@ class TestList extends React.Component {
 
     return (
       <section className="tests">
-        <h2>Tests Available</h2>
-        { true ? (
-          <button type="button" className="btn btn-primary" onClick={this.addTest}>Add New Test</button>
-        ) : null
-        }
+        <ReactCSSTransitionGroup transitionName="tests-head" transitionAppear={true} transitionAppearTimeout={500}
+          transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+          <h2>Tests Available</h2>
+          { true ? (
+            <button type="button" className="btn btn-primary" onClick={this.addTest}>Add New Test</button>
+          ) : null
+          }
+        </ReactCSSTransitionGroup>
         <div className="testList">
-          {testNodes}
+          <ReactCSSTransitionGroup transitionName="tests" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
+            {testNodes}
+          </ReactCSSTransitionGroup>
         </div>
       </section>
     );
