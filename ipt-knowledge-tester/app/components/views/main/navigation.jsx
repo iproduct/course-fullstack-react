@@ -3,6 +3,7 @@
 import React from 'react';
 // import { browserHistory } from 'react-router';
 import NavLink from '../../navigation/nav-link';
+import LanguageChooser from '../../common/language-chooser';
 
 const Navigation = ({children}, context) => {
 
@@ -17,10 +18,10 @@ const Navigation = ({children}, context) => {
     context.router.push(path);
   }
 
-  function handleAddTest() {
-    const path = { pathname: '/test', query: { controls: true, edit: true } };
-    context.router.push(path);
-  }
+  // function handleAddTest() {
+  //   const path = { pathname: '/test', query: { controls: true, edit: true } };
+  //   context.router.push(path);
+  // }
 
   return (
     <nav className="navbar navbar-default navbar-fixed-top">
@@ -64,7 +65,7 @@ const Navigation = ({children}, context) => {
           </form>
 
           <div className="navbar-form navbar-right">
-            <button onClick={handleAddTest} className="btn btn-primary">Add New Test</button>
+            <LanguageChooser className="form-control" />
           </div>
 
           <ul className="nav navbar-nav navbar-right">
@@ -81,6 +82,8 @@ const Navigation = ({children}, context) => {
 Navigation.propTypes = {
   children: React.PropTypes.node
 }
+
+//<button onClick={handleAddTest} className="btn btn-primary">Add New Test</button>
 
 // ask for `router` from context
 Navigation.contextTypes = {

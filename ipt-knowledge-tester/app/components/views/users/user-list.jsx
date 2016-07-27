@@ -55,7 +55,7 @@ class UserList extends React.Component {
         ) : null
         }
         <div className="userList">
-          <ReactCSSTransitionGroup transitionName="users" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+          <ReactCSSTransitionGroup transitionName="users" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
             {userNodes}
           </ReactCSSTransitionGroup>
         </div>

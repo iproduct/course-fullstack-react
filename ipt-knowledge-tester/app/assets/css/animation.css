@@ -1,8 +1,8 @@
 /* Users heihght animation on enter/leave */
-.users-enter,
-.users-leave {
+.users-enter.users-enter-active,
+.users-leave.users-leave-active {
   overflow: hidden;
-  transition: 0.5s linear all;
+  transition: all 1s ease-in;
 }
 
 .users-enter,
@@ -16,7 +16,7 @@
 
 .users-enter.users-enter-active,
 .users-leave {
-  height: auto;
+  height:250px;
   margin-bottom: 20px;
   opacity: 1;
   padding-bottom: 4px;
@@ -28,7 +28,6 @@
 .tests-enter {
   opacity: 0.01;
   overflow: hidden;
-  transition: 1s linear all;
 }
 
 .tests-enter.tests-enter-active {
@@ -53,5 +52,5 @@
 
 .tests-head-appear.tests-head-appear-active {
   opacity: 1;
-  transition: opacity .5s ease-in;
+  transition: opacity 5s ease-in;
 }

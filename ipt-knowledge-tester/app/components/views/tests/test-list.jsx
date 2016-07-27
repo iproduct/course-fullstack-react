@@ -48,8 +48,8 @@ class TestList extends React.Component {
 
     return (
       <section className="tests">
-        <ReactCSSTransitionGroup transitionName="tests-head" transitionAppear={true} transitionAppearTimeout={500}
-          transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+        <ReactCSSTransitionGroup transitionName="tests-head" transitionAppear={true} transitionAppearTimeout={5000}
+          transitionEnter={false} transitionLeave={false}>
           <h2>Tests Available</h2>
           { true ? (
             <button type="button" className="btn btn-primary" onClick={this.addTest}>Add New Test</button>

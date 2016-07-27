@@ -1,7 +1,26 @@
 import React from 'react';
+import LocalizedStrings from 'react-localization';
 import $ from 'jquery';
 import deepEqual from 'deep-equal';
 import Modal from '../../common/modal';
+
+// String localization
+const messages = new LocalizedStrings({
+  en: {
+    addNew: 'Add New',
+    edit: 'Edit',
+    user: 'User',
+    firstName: 'First Name',
+    lastName: 'Last Name'
+  },
+  bg: {
+    addNew: 'Добавяне на нов',
+    edit: 'Редактиране на',
+    user: 'потребител',
+    firstName: 'Собствено име',
+    lastName: 'Фамилно име'
+  }
+});
 
 
 class User extends React.Component {
@@ -64,6 +83,9 @@ class User extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.editUser = this.editUser.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
+
+    // Set language
+    messages.setLanguage(context.localeService.getLocale());
   }
 
   // Class methods
@@ -72,13 +94,13 @@ class User extends React.Component {
   }
 
   saveChanges() {
-    let newUser =  $.extend(true, {}, this.state.user);
+    let newUser = $.extend(true, {}, this.state.user);
     //check if password is valid
-    if(!newUser.password || !newUser.password2 || newUser.password !== newUser.password2 || newUser.password.length < 8) {
+    if (!newUser.password || !newUser.password2 || newUser.password !== newUser.password2 || newUser.password.length < 8) {
       $('#invalid-password').modal();
       return;
     }
-    delete(newUser.password2);
+    delete (newUser.password2);
     if (newUser.id) { // edit user mode
       this.context.userService.editUser(newUser).then(() => {
         //return back to users collection
@@ -93,7 +115,7 @@ class User extends React.Component {
   }
 
   cancelEdit() {
-     if (deepEqual(this.state.test, this.state.oldTest)) {
+    if (deepEqual(this.state.test, this.state.oldTest)) {
       this.confirmCancelEdit();
     } else {
       $('#user-cancel-confirm').modal();
@@ -130,13 +152,16 @@ class User extends React.Component {
 
   // Render component
   render() {
+    // Get current locale
+    messages.setLanguage(this.context.localeService.getLocale());
+
     let isControls = this.state.isControls;
     let isEdit = this.state.isEdit;
 
     return (
       <div className="user">
         { isEdit ? (
-          <h2>{!this.state.user.id ? "Add New" : "Edit"} User</h2>
+          <h2>{!this.state.user.id ? messages.addNew : messages.edit} {messages.user} </h2>
         ) : null}
         <h3 className="user-email">
           { (isEdit) ? (
@@ -151,7 +176,7 @@ class User extends React.Component {
             <tbody>
 
               <tr>
-                <td>First Name</td>
+                <td>{messages.firstName}</td>
                 <td>
                   { (isEdit) ? (
                     <input type="text" name="fname" placeholder="User's first name ..." className="form-control"
@@ -164,7 +189,7 @@ class User extends React.Component {
               </tr>
 
               <tr>
-                <td>Last Name</td>
+                <td>{messages.lastName}</td>
                 <td>
                   { (isEdit) ? (
                     <input type="text" name="lname" placeholder="User's last name ..." className="form-control"
@@ -183,8 +208,8 @@ class User extends React.Component {
                     <input type="password" name="password" placeholder="Password ..." className="form-control"
                       value={this.state.user.password} onChange={this.handleTextChange} />
                   </td>
-                </tr> 
-              ): null }
+                </tr>
+              ) : null }
 
               { (isEdit) ? (
                 <tr>
@@ -194,7 +219,7 @@ class User extends React.Component {
                       value={this.state.user.password2} onChange={this.handleTextChange} />
                   </td>
                 </tr>
-              ): null }
+              ) : null }
 
               <tr>
                 <td>User Role</td>
@@ -257,7 +282,8 @@ User.propTypes = {
 
 User.contextTypes = {
   userService: React.PropTypes.object,
-  router: React.PropTypes.object
+  router: React.PropTypes.object,
+  localeService: React.PropTypes.object
 };
 
 User.defaultProps = {
