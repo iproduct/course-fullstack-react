@@ -21,7 +21,9 @@ const Boom = require('boom');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
-const routes = require('./routes');
+const testRoutes = require('./test.routes');
+const userRoutes = require('./user.routes');
+const allRoutes = testRoutes.concat(userRoutes);
 
 //Connection URL to db
 const url = 'mongodb://localhost:27017/tests';
@@ -70,6 +72,6 @@ MongoClient.connect(url, { db: { w: 1 } }).then( (db) => {
   });
 
   // Registering roots
-  server.route(routes);
+  server.route(allRoutes);
 })
 .catch( (err) => {throw err;});

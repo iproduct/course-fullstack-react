@@ -39,13 +39,16 @@ const Navigation = ({children}, context) => {
           <ul className="nav navbar-nav">
             <li><NavLink to="/" onlyActiveOnIndex={true}>Home</NavLink></li>
             <li><NavLink to={{ pathname: '/tests', query: { controls: true } }} >Tests</NavLink></li>
+            
 
             <li className="dropdown">
-              <NavLink to="/repos" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Repos <span className="caret"></span></NavLink>
+              <NavLink to="/users" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span className="caret"></span></NavLink>
               <ul className="dropdown-menu">
+                <li><NavLink to={{ pathname: '/users', query: { controls: true } }} >Manage Users</NavLink></li>
+                <li><NavLink to={{ pathname: '/user', query: { controls: true, edit: true } }} >Add New User</NavLink></li>
+                <li role="separator" className="divider"></li>
                 <li><NavLink to="/repos/reactjs/react-router">React Router</NavLink></li>
                 <li><NavLink to="/repos/facebook/react">React</NavLink></li>
-                <li role="separator" className="divider"></li>
                 <li><a href="#">Separated link</a></li>
                 <li role="separator" className="divider"></li>
                 <li><a href="#">One more separated link</a></li>

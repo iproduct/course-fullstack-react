@@ -215,7 +215,7 @@ class Test extends React.Component {
         { isEdit ? (
           <h2>{!this.state.test.id ? "Add New" : "Edit"} Test</h2>
         ) : null}
-        <h3 className="testTitle">
+        <h3 className="test-title">
           { (isEdit) ? (
             <input type="text" name="title" placeholder="Name the test ..." className="form-control"
               value={this.state.test.title} onChange={this.handleTextChange} />

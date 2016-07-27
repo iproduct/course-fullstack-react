@@ -16,28 +16,34 @@
 import React from 'react';
 import Navigation from './main/navigation';
 import TestService from '../../services/test.service'
+import UserService from '../../services/user.service'
 
-const TEST_SERVICE_URL = '/api/tests'
+const TEST_SERVICE_URL = '/api/tests';
+const USER_SERVICE_URL = '/api/users';
 
 class IPTKnowledgeTester extends React.Component {
   constructor(props) {
     super(props);
     this.testServiceSingleton = new TestService(TEST_SERVICE_URL);
+    this.userServiceSingleton = new UserService(USER_SERVICE_URL);
   }
 
   getChildContext() {
-    return {testService: this.testServiceSingleton};
+    return {
+      testService: this.testServiceSingleton,
+      userService: this.userServiceSingleton,
+    };
   }
 
   render() {
     return (
       <main>
-          <Navigation />
+        <Navigation />
 
-          {/* Here routed components go ... */}
-          <div className="container">
-            {this.props.children}
-          </div>
+        {/* Here routed components go ... */}
+        <div className="container">
+          {this.props.children}
+        </div>
       </main>
     );
   }

@@ -22,7 +22,7 @@ body { padding-top: 70px; }
     padding: 0;
 }
 
-.test-controls button, .question-controls button, .answer-controls button {
+.test-controls button, .question-controls button, .answer-controls button, .user-controls button {
     margin-left: 5px;
     margin-right: 5px;
 }

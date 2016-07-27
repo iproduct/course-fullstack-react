@@ -2,33 +2,21 @@
 
 import $ from 'jquery';
 
-class TestService {
+class UserService {
 
     constructor(baseUrl) {
         this.url = baseUrl;
     }
 
-    getTests() {
-        return this.getJsonAsPromise(this.url)
-            .then((tests) => tests.map(
-                (test) => {
-                    if (!test.questions)
-                        test.questions = [];
-                    return test;
-                })
-            );
+    getUsers() {
+        return this.getJsonAsPromise(this.url);
     }
 
-    getTestById(testId) {
-        return this.getJsonAsPromise(`${this.url}/${testId}`)
-            .then((test) => {
-                if (!test.questions)
-                    test.questions = [];
-                return test;
-            });
+    getUserById(userId) {
+        return this.getJsonAsPromise(`${this.url}/${userId}`);
     }
 
-    addNewTest(test) {
+    addNewUser(user) {
         let url = this.url;
         return new Promise(
             function (resolve, reject) {
@@ -37,33 +25,33 @@ class TestService {
                     dataType: 'json',
                     type: 'POST',
                     contentType: 'application/json',
-                    data: JSON.stringify(test),
+                    data: JSON.stringify(user),
                 }).done(resolve).fail(reject);
             }
         );
     }
 
-    editTest(test) {
+    editUser(user) {
         let url = this.url;
         return new Promise(
             function (resolve, reject) {
                 $.ajax({
-                    url: `${url}/${test.id}`,
+                    url: `${url}/${user.id}`,
                     dataType: 'json',
                     type: 'PUT',
                     contentType: 'application/json',
-                    data: JSON.stringify(test),
+                    data: JSON.stringify(user),
                 }).done(resolve).fail(reject);
             }
         );
     }
 
-    deleteTest(testId) {
+    deleteUser(userId) {
         let url = this.url;
         return new Promise(
             function (resolve, reject) {
                 $.ajax({
-                    url: `${url}/${testId}`,
+                    url: `${url}/${userId}`,
                     dataType: 'json',
                     type: 'DELETE'
                 }).done(resolve).fail(reject);
@@ -78,4 +66,4 @@ class TestService {
     }
 }
 
-export default TestService;
+export default UserService;

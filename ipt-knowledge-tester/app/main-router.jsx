@@ -29,7 +29,8 @@ import Repos from './components/views/main/repos';
 import Repo from './components/views/main/repo';
 import TestList from './components/views/tests/test-list';
 import Test from './components/views/tests/test';
-// import NoMatch from './components/no-match';
+import UserList from './components/views/users/user-list';
+import User from './components/views/users/user';
 
 window.jQuery = $;
 const appHistory = useQueries(useRouterHistory(createBrowserHistory))();
@@ -82,6 +83,8 @@ ReactDOM.render((
       <IndexRoute component={Home}/>
       <Route path="/tests" component={TestList} />
       <Route path="/test(/:testId)" component={Test} />
+      <Route path="/users" component={UserList} />
+      <Route path="/user(/:userId)" component={User} />
       <Route path="/repos" component={Repos}>
         <Route path="/repos/:userName/:repoName" component={Repo}/>
       </Route>
