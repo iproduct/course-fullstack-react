@@ -42,7 +42,7 @@ Two main features are implemented both on client and server side in this version
 * User management
 * Test /Question /Answer management
 
-The server side implementation for two features are in user.routes.js and user.handlers.js (for User management), 
-and test.routes.js and test.handlers.js (for Test management).
+The server side implementation for two features are in `user.routes.js` and `user.handlers.js` (for User management), 
+and `test.routes.js` and `test.handlers.js` (for Test management).
 
 Client side implementation uses React ES6 components and resides id `/app/componets/views/users`, and `/app/componets/views/tests` accordingly.
