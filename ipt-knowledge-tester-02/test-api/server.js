@@ -13,27 +13,32 @@
 'use strict';
 
 const fs = require('fs');
-const path = require('path');
+var path = require('path');
 const Hapi = require('hapi');
 const Good = require('good');
 const Boom = require('boom');
-const routes = require('./routes');
 
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
-// Connection URL
-var url = 'mongodb://localhost:27017/tests';
-// Use connect method to connect to the Server
-MongoClient.connect(url, {db:{w:1}}, function(err, db) {
-  assert.equal(null, err);
-  console.log(`Connected correctly to MongoDB server at: ${url}`);
+const testRoutes = require('./test.routes');
+const userRoutes = require('./user.routes');
+const allRoutes = testRoutes.concat(userRoutes);
 
-  // Create Hapi server
+//Connection URL to db
+const url = 'mongodb://localhost:27017/tests';
+
+//Use connect to connect to db
+MongoClient.connect(url, { db: { w: 1 } }).then( (db) => {
+  // assert.equal(null, err);
+  console.log(`Successfully connected to MongoDB server at: ${url}`);
+
+  //Create hapi server 
   const server = new Hapi.Server();
   server.connection({ port: 9000 });
 
   server.bind({ db: db });
+
 
   // Registering the Good plugin
   server.register([{
@@ -67,6 +72,6 @@ MongoClient.connect(url, {db:{w:1}}, function(err, db) {
   });
 
   // Registering roots
-  server.route(routes);
-});
-
+  server.route(allRoutes);
+})
+.catch( (err) => {throw err;});
