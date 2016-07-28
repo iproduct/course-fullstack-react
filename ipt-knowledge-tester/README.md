@@ -16,7 +16,9 @@ npm start
 ``` 
 
 Alternatively you can selectively start the individual application components:
-* MongoDB - ''' npm run mongo '''
+* MongoDB - '''
+npm run mongo 
+'''
 * node.js + hapi.js serrvices - '''npm run services''' (if you don't need automatic server restarting on change - use '''node''' instead of '''nodemon''' in the script)
 * webpack-dev-server with HMR (Hot Module Replacement) - '''npm run webpack'''
 
