@@ -16,7 +16,7 @@ npm start
 ``` 
 
 Alternatively you can selectively start the individual application components:
-* MongoDB - '''npm run mongo'''
+* MongoDB - ''' npm run mongo '''
 * node.js + hapi.js serrvices - '''npm run services''' (if you don't need automatic server restarting on change - use '''node''' instead of '''nodemon''' in the script)
 * webpack-dev-server with HMR (Hot Module Replacement) - '''npm run webpack'''
 
@@ -40,7 +40,7 @@ The Test API is proxied by webpack-dev-server configuration to port 9000 (config
 
 Two main features are implemented both on client and server side in this version of the project:
 * User management
-* Test/Question /Answer management
+* Test /Question /Answer management
 
 The server side implementation for two features are in user.routes.js and user.handlers.js (for User management), 
 and test.routes.js and test.handlers.js (for Test management).
