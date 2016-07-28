@@ -1,6 +1,6 @@
 {
-  "name": "react-demo-01",
-  "version": "1.0.0",
+  "name": "ipt-knowledge-tester",
+  "version": "0.1.0",
   "description": "React intro",
   "main": "./test-api/server.js",
   "scripts": {
