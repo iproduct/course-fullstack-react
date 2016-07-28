@@ -1,6 +1,6 @@
 {
   "name": "ipt-knowledge-tester",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "IPT Knowledge Tester",
   "main": "./test-api/server.js",
   "scripts": {
