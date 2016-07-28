@@ -8,19 +8,13 @@
 .users-enter,
 .users-leave.users-leave-active {
   height: 0;
-  margin-bottom: 0;
   opacity: 0;
-  padding-bottom: 0;
-  padding-top: 0;
 }
 
 .users-enter.users-enter-active,
 .users-leave {
-  height:250px;
-  margin-bottom: 20px;
+  height:16em;
   opacity: 1;
-  padding-bottom: 4px;
-  padding-top: 15px;
 }
 
 
@@ -32,7 +26,7 @@
 
 .tests-enter.tests-enter-active {
   opacity: 1;
-  transition: opacity 1s ease-in;
+  transition: all 0.5s ease-in;
 }
 
 .tests-leave {
@@ -41,7 +35,7 @@
 
 .tests-leave.tests-leave-active {
   opacity: 0.01;
-  transition: opacity 1s ease-in;
+  transition: all 0.5s ease-in;
 }
 
 
@@ -52,5 +46,5 @@
 
 .tests-head-appear.tests-head-appear-active {
   opacity: 1;
-  transition: opacity 5s ease-in;
+  transition: opacity 0.5s ease-in;
 }

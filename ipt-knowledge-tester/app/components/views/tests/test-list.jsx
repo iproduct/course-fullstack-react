@@ -48,7 +48,7 @@ class TestList extends React.Component {
 
     return (
       <section className="tests">
-        <ReactCSSTransitionGroup transitionName="tests-head" transitionAppear={true} transitionAppearTimeout={5000}
+        <ReactCSSTransitionGroup transitionName="tests-head" transitionAppear={true} transitionAppearTimeout={500}
           transitionEnter={false} transitionLeave={false}>
           <h2>Tests Available</h2>
           { true ? (
@@ -57,7 +57,7 @@ class TestList extends React.Component {
           }
         </ReactCSSTransitionGroup>
         <div className="testList">
-          <ReactCSSTransitionGroup transitionName="tests" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
+          <ReactCSSTransitionGroup transitionName="tests" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
             {testNodes}
           </ReactCSSTransitionGroup>
         </div>

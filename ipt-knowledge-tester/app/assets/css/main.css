@@ -1,5 +1,10 @@
 body { padding-top: 70px; }
 
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 #home .jumbotron img {
     padding-right: 50px;
 }
