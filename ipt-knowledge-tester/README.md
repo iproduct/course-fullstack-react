@@ -36,7 +36,7 @@ Client side application is developed as *Singe Page App (SPA)*. The app entry po
 specified in `main-router.jsx`. The top-level application component is `ipt-knowledge-tester.jsx` (React JSX + ES6).
 
 Server side is implemented using *hapi.js (http://hapijs.com/)* *Node* framework and resides in `/test-api` forlder. 
-The Test API is proxied by webpack-dev-server configuration to port 9000 (configurable). Main server class is *server.js*.
+The Test API is proxied by webpack-dev-server configuration to port 9000 (configurable). Main server class is `server.js`.
 
 Two main features are implemented both on client and server side in this version of the project:
 * User management
