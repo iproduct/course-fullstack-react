@@ -1,0 +1,1 @@
+curl --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjEyMywiaWF0IjoxNDY5NzQyNTU5fQ.R3uGQWX15950UfD_oA05pe9lXFvSL9Uteh5muRAiSmw" http://office20:9000/api/withToken

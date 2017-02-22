@@ -16,6 +16,16 @@
 const Joi = require('joi');
 const Tests = require('./test.handlers');
 
+const testSchema = Joi.object({
+  id: Joi.string().allow(''),
+  title: Joi.string().min(2).required(),
+  difficulty: Joi.string().required(),
+  description: Joi.string().optional(),
+  author: Joi.string().optional(),
+  license: Joi.string().required(),
+  questions: Joi.array().optional(),
+});
+
 module.exports = [{
   method: 'GET',
   path: '/api/tests',
@@ -39,15 +49,7 @@ module.exports = [{
     handler: Tests.create,
     config: {
       validate: {
-        payload: Joi.object({
-          id: Joi.string().allow(''),
-          title: Joi.string().min(2).required(),
-          difficulty: Joi.string().required(),
-          description: Joi.string().optional(),
-          author: Joi.string().optional(),
-          license: Joi.string().required(),
-          questions: Joi.array().optional(),
-        })
+        payload: testSchema
       }
     }
   },
@@ -60,15 +62,7 @@ module.exports = [{
         params: {
           testId: Joi.string().length(24).required()
         },
-        payload: Joi.object({
-          id: Joi.string().allow(''),
-          title: Joi.string().min(2).required(),
-          difficulty: Joi.string().required(),
-          description: Joi.string().optional(),
-          author: Joi.string().optional(),
-          license: Joi.string().required(),
-          questions: Joi.array().optional(),
-        })
+        payload: testSchema
       }
     }
   },

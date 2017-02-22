@@ -14,69 +14,74 @@
 'use strict';
 
 const Joi = require('joi');
-const Users = require('./user.handlers');
+const Auth = require('./auth.handlers');
 
-const userSchema = Joi.object({
-  id: Joi.string().allow(''),
+const loginSchema = Joi.object({
   email: Joi.string().email().min(8).max(80).required(),
-  fname: Joi.string().min(2).required(),
-  lname: Joi.string().min(2).required(),
   password: Joi.string().min(8).max(30).required(),
-  role: Joi.string().required()
 });
 
 module.exports = [{
-  method: 'GET',
-  path: '/api/users',
-  handler: Users.findAll
+  method: 'POST',
+  path: '/api/login',
+  config: {
+    payload: {
+      output: 'data',
+      parse: true
+    },
+    validate: {
+      payload: loginSchema
+    }
+  },
+  handler: Auth.login
 },
-  {
-    method: 'GET',
-    path: '/api/users/{userId}',
-    handler: Users.find,
-    config: {
-      validate: {
-        params: {
-          userId: Joi.string().length(24).required()
-        }
-      }
-    }
-  },
-  {
-    method: 'POST',
-    path: '/api/users',
-    handler: Users.create,
-    config: {
-      validate: {
-        payload: userSchema
-      }
-    }
-  },
-  {
-    method: 'PUT',
-    path: '/api/users/{userId}',
-    handler: Users.edit,
-    config: {
-      validate: {
-        params: {
-          userId: Joi.string().length(24).required()
-        },
-        payload: userSchema
-      }
-    }
-  },
-  {
-    method: 'DELETE',
-    path: '/api/users/{userId}',
-    handler: Users.remove,
-    config: {
-      validate: {
-        params: {
-          userId: Joi.string().length(24).required()
-        }
-      }
-    }
-  },
+  // {
+  //   method: ['GET', 'POST'],
+  //   path: '/api/users/{userId}',
+  //   handler: Users.find,
+  //   config: {
+  //     validate: {
+  //       params: {
+  //         userId: Joi.string().length(24).required()
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   method: 'POST',
+  //   path: '/api/users',
+  //   handler: Users.create,
+  //   config: {
+  //     validate: {
+  //       payload: userSchema
+  //     }
+  //   }
+  // },
+  // {
+  //   method: 'PUT',
+  //   path: '/api/users/{userId}',
+  //   handler: Users.edit,
+  //   config: {
+  //     validate: {
+  //       params: {
+  //         userId: Joi.string().length(24).required()
+  //       },
+  //       payload: userSchema
+  //     }
+  //   }
+  // },
+  // {
+  //   method: 'DELETE',
+  //   path: '/api/users/{userId}',
+  //   handler: Users.remove,
+  //   config: {
+  //     validate: {
+  //       params: {
+  //         userId: Joi.string().length(24).required()
+  //       }
+  //     }
+  //   }
+  // },
   {
     // GET to http://localhost:8080/tokenRequired
     // with authorization in the request headers set to Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50SWQiOjEyMywiaWF0IjoxMzkyNTg2NzgwfQ.nZT1lsYoJvudjEYodUdgPR-32NNHk7uSnIHeIHY5se0

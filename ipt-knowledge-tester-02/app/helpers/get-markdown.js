@@ -13,8 +13,6 @@
 
 'use strict';
 
-'use strict';
-
 const Remarkable = require('remarkable');
 const markDown = new Remarkable();
 
