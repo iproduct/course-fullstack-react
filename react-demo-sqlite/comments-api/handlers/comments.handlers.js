@@ -24,31 +24,30 @@ exports.findAll = function (request, reply) {
         qParams.push(request.query.author);
     }
 
-    this.db.all(sqlQuery, qParams, (err, results) => {
-        if(err) throw err;
+    this.db.all(sqlQuery, qParams).then(results => {
+        console.log(results);
         reply(results);
     });
 };
 
 exports.find = function (request, reply) {
-    this.db.get('SELECT * FROM comments WHERE id = ?', [request.params.commentId], 
-    (err, result) => {
-        if(err) throw err;
-        if (typeof result !== 'undefined') {
-            reply(result);
-        }
-        else {
-            reply(Boom.notFound(`Comment with Id=${request.params.commentId} not found.`));
-        }
-    });
+    this.db.get('SELECT * FROM comments WHERE id = ?', [request.params.commentId]).
+        then(result => {
+            if (typeof result !== 'undefined') {
+                reply(result);
+            }
+            else {
+                reply(Boom.notFound(`Comment with Id=${request.params.commentId} not found.`));
+            }
+        });
 };
 
 exports.create = function (request, reply) {
     let comment = request.payload;
-    this.db.run(`INSERT INTO comments (author, text) VALUES (?, ?);`, 
-        [comment.author, comment.text],
-        function(err) {
-            if(err) throw err;
+    this.db.run(`INSERT INTO comments (author, text) VALUES (?, ?);`,
+        [comment.author, comment.text])
+        .then(
+        function () {
             comment.id = this.lastID;
             const uri = request.raw.req.url + '/' + comment.id;
             console.log('Created: ', uri);
@@ -57,14 +56,14 @@ exports.create = function (request, reply) {
 };
 
 exports.remove = function (request, reply) {
-    this.db.run('DELETE FROM comments WHERE id = ?', [request.params.commentId], 
-        function(err) {
-            if(err) throw err;
-            if (this.changes  > 0) {
+    this.db.run('DELETE FROM comments WHERE id = ?', [request.params.commentId])
+        .then(
+        function () {
+            if (this.changes > 0) {
                 console.log('Deleted: ', request.raw.req.url);
                 reply(`Comment ${request.params.commentId} was deleted successfully.`);
             } else {
                 reply(Boom.notFound(`Comment with Id=${request.params.commentId} not found.`));
             }
-    });
+        });
 };

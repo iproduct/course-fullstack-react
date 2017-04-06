@@ -44,6 +44,7 @@ let CommentBox = React.createClass({
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
+    this.loadCommentsFromServer();
   },
   handleCommentDelete: function (commentId) {
     // var comments = this.state.data;
@@ -54,12 +55,13 @@ let CommentBox = React.createClass({
       url: this.props.url + "/" + commentId,
       type: 'DELETE',
       success: function (data) {
-        console.log( data );
+        console.log(data);
       }.bind(this),
-        error: function (xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
+      error: function (xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
+    this.loadCommentsFromServer();
   },
   componentDidMount: function () {
     this.loadCommentsFromServer();
@@ -69,14 +71,14 @@ let CommentBox = React.createClass({
     return (
       <div className="commentBox">
         <h1>Comments</h1>
-        <CommentList onCommentDelete={this.handleCommentDelete} data={this.state.data}/>
-        <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
+        <CommentList onCommentDelete={this.handleCommentDelete} data={this.state.data} />
+        <CommentForm onCommentSubmit={this.handleCommentSubmit} />
       </div>
     );
   }
 });
 
 ReactDOM.render(
-  <CommentBox url="/api/comments" pollInterval={2000} />,
+  <CommentBox url="/api/comments" pollInterval={5000} />,
   document.getElementById('app')
 );
