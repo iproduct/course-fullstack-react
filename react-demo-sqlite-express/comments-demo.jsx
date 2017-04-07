@@ -39,12 +39,12 @@ let CommentBox = React.createClass({
       success: function (newComment) {
         var newComments = this.state.data.concat([newComment]);
         this.setState({ data: newComments });
-        this.loadCommentsFromServer();
       }.bind(this),
       error: function (xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
+    this.loadCommentsFromServer();
   },
   handleCommentDelete: function (commentId) {
     // var comments = this.state.data;
@@ -56,12 +56,12 @@ let CommentBox = React.createClass({
       type: 'DELETE',
       success: function (data) {
         console.log(data);
-        this.loadCommentsFromServer();
       }.bind(this),
       error: function (xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
+    this.loadCommentsFromServer();
   },
   componentDidMount: function () {
     this.loadCommentsFromServer();
@@ -79,6 +79,6 @@ let CommentBox = React.createClass({
 });
 
 ReactDOM.render(
-  <CommentBox url="/api/comments" pollInterval={5000} />,
+  <CommentBox url="/api/comments" pollInterval={50000} />,
   document.getElementById('app')
 );

@@ -10,7 +10,10 @@ let Comment = React.createClass({
     onCommentDelete: React.PropTypes.func
   },
   rawMarkup: function () {
-    let rawMarkup = md.render(this.props.children.toString());
+    let rawMarkup = '';
+    if (this.props.children) {
+      rawMarkup = md.render(this.props.children.toString());
+    }
     return { __html: rawMarkup };
   },
   handleDelete: function () {
@@ -27,7 +30,7 @@ let Comment = React.createClass({
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
-        <span dangerouslySetInnerHTML={this.rawMarkup() } />
+        <span dangerouslySetInnerHTML={this.rawMarkup()} />
         <button onClick={this.handleDelete}>Delete</button>
       </div>
     );

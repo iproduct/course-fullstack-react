@@ -14,8 +14,7 @@ let CommentList = React.createClass({
   render: function () {
     let commentNodes = this.props.data.map((comment) => {
       return (
-        <Comment author={comment.author} commentId={comment.id} key={comment.id} 
-        onCommentDelete={this.props.onCommentDelete}>
+        <Comment author={comment.author} commentId={comment.id} key={comment.id} onCommentDelete={this.props.onCommentDelete}>
           {comment.text}
         </Comment>
       );

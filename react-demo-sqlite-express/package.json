@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:lint": "eslint . --ext .js --ext .jsx --cache || true",
     "start": "webpack-dev-server --inline --hot",
-    "services": "node ./comments-api/server.js"
+    "services": "nodemon -w ./comments-api ./comments-api/server.js"
   },
   "repository": {
     "type": "git",
@@ -40,22 +40,24 @@
     "jshint": "^2.9.2",
     "jshint-loader": "^0.8.3",
     "node-libs-browser": "^1.0.0",
+    "nodemon": "^1.11.0",
     "strip-loader": "^0.1.2",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "boom": "^3.2.2",
-    "good": "^7.0.1",
-    "good-console": "^6.1.2",
-    "good-squeeze": "^4.0.0",
-    "hapi": "^13.5.0",
-    "hoek": "^4.0.1",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.6.3",
+    "express": "^4.15.2",
+    "indicative": "^2.2.1",
     "jquery": "^3.1.0",
+    "morgan": "^1.8.1",
     "path": "^0.12.7",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "remarkable": "^1.6.2",
-    "sqlite3": "^3.1.4"
+    "serve-favicon": "^2.4.2",
+    "sqlite3": "^3.1.8"
   }
 }
